@@ -51,8 +51,9 @@ export default class DatePicker extends PureComponent {
   }
 
   onOutsideAction = (event) => {
-    if (this.wrapper && !this.wrapper.contains(event.target)) {
+    if (this.wrapper && !this.wrapper.contains(event.target) && !event.target.className.indexOf('react-calendar')) {
       this.closeCalendar();
+      event.stopPropagation();
     }
   }
 
