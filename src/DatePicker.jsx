@@ -25,7 +25,7 @@ export default class DatePicker extends PureComponent {
     return null;
   }
 
-  state = {};
+  state = {}
 
   componentDidMount() {
     this.handleOutsideActionListeners();
@@ -51,8 +51,9 @@ export default class DatePicker extends PureComponent {
   }
 
   onOutsideAction = (event) => {
-    if (this.wrapper && !this.wrapper.contains(event.target)) {
+    if (this.wrapper && !this.wrapper.contains(event.target) && (typeof event?.target?.className === 'string' && !event?.target?.className?.indexOf('react-calendar'))) {
       this.closeCalendar();
+      event.stopPropagation();
     }
   }
 
@@ -102,9 +103,9 @@ export default class DatePicker extends PureComponent {
     this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
   }
 
-  stopPropagation = (event) => event.stopPropagation();
+  stopPropagation = (event) => event.stopPropagation()
 
-  clear = () => this.onChange(null);
+  clear = () => this.onChange(null)
 
   handleOutsideActionListeners(shouldListen) {
     const { isOpen } = this.state;
